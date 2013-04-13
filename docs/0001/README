@@ -1,0 +1,25 @@
+NOTE: the following are not necessarily true for wayland now.
+
+#basic architecture
+1. server create server-side display object.
+   the display object has the object id: 0 and 
+   implements display_interface.
+   add to the server side object list: wl_hash.
+2. server add the listening socket to event loop.
+4. server side main loop runs.
+5. client connects to wayland.
+6. @sock_data get called.
+   the callback @socket_data create clients and 
+   add the corresponding socket fd to event loop
+   with callback @wl_client_data.
+7. client send a message to wayland.
+   marshalling function and parameters to the wire 
+   format.
+8. server invokes @wl_client_data
+   lookup the object whose interface contains the method
+   by the object id.
+   demarshalling function and parameters from the wire.
+   invoke the function with the specified parameters.
+
+most of the time we need to explicitly request some object
+be created on the server with a given new_id.
