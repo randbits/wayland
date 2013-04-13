@@ -1,0 +1,3 @@
+0001.this is the first commit of wayland project, it provides a simplified view of
+     the general mechanisms (object, interface, methods, .etc) used in wayland core
+     protocol
